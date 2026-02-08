@@ -13,9 +13,8 @@ jobs:
       - name: Setup Device Tree
         run: |
           mkdir -p device/tecno/camon30pro
-          # Inililipat lang ang mga files na existing sa repo mo
+          # Nilipat lang natin yung mga files na talagang nandoon sa repo mo
           mv Android.mk AndroidProducts.mk BoardConfig.mk omni_camon30pro.mk recovery.fstab dtb.img device/tecno/camon30pro/
-          [ -f kernel ] && mv kernel device/tecno/camon30pro/
 
       - name: Sync Minimal Manifest
         run: |
@@ -30,6 +29,7 @@ jobs:
           cd ~/twrp
           export ALLOW_MISSING_DEPENDENCIES=true
           . build/envsetup.sh
+          # Gagamitin natin yung omni_camon30pro dahil iyon ang file mo
           lunch omni_camon30pro-eng
           make recoveryimage -j$(nproc)
 
