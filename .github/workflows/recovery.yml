@@ -13,7 +13,7 @@ jobs:
       - name: Setup Device Tree
         run: |
           mkdir -p device/tecno/camon30pro
-          mv Android.mk AndroidProducts.mk BoardConfig.mk device_camon30pro.mk omni_camon30pro.mk recovery.fstab dtb.img device/tecno/camon30pro/
+          mv Android.mk AndroidProducts.mk BoardConfig.mk omni_camon30pro.mk recovery.fstab dtb.img device/tecno/camon30pro/
           [ -f kernel ] && mv kernel device/tecno/camon30pro/
 
       - name: Sync Minimal Manifest
