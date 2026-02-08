@@ -13,6 +13,7 @@ jobs:
       - name: Setup Device Tree
         run: |
           mkdir -p device/tecno/camon30pro
+          # Inililipat lang ang mga files na existing sa repo mo
           mv Android.mk AndroidProducts.mk BoardConfig.mk omni_camon30pro.mk recovery.fstab dtb.img device/tecno/camon30pro/
           [ -f kernel ] && mv kernel device/tecno/camon30pro/
 
@@ -37,5 +38,3 @@ jobs:
         with:
           name: TWRP-Camon30Pro
           path: ~/twrp/out/target/product/camon30pro/recovery.img
-
-          
