@@ -13,7 +13,7 @@ jobs:
       - name: Install Build Tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y abcde bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+          sudo apt-get install -y bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
           mkdir -p ~/bin
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
@@ -28,10 +28,11 @@ jobs:
         run: |
           mkdir ~/twrp
           cd ~/twrp
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-12.1
-          repo sync -j$(nproc)
+          git config --global user.email "gh-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          # Ginanti natin ang URL sa mas stable na official TWRP manifest
+          repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+          repo sync -c -j$(nproc) --force-sync --no-clone-bundle --no-tags
           cp -r $GITHUB_WORKSPACE/device ~/twrp/
 
       - name: Build Recovery
